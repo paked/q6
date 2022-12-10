@@ -1,8 +1,66 @@
 @font-face {
   font-family: "JetBrainsMono";
-  src: url("/fonts/webfonts/JetBrainsMono-Regular.woff2") format("woff");
+  src: url("/JetBrainsMono/fonts/webfonts/JetBrainsMono-Regular.woff2") format("woff");
 }
 
 body {
   font-family: 'JetBrainsMono';
+}
+
+span.pill {
+  background-color: rebeccapurple;
+  border-radius: 3px;
+}
+
+#display {
+  background-color: #efefef;
+  width: 50%;
+  min-height: 50px;
+}
+
+#display p, blockquote {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#display {
+  counter-reset: line 0;
+}
+
+#display .line {
+  counter-increment: line;
+}
+
+#display pre {
+  margin: 0;
+  font: inherit;
+  display: inline;
+}
+
+#display div::before {
+  color: #666;
+	content: counter(line) '  ';
+  pointer-events: none;
+}
+
+span .empty::before {
+  content: ' ';
+}
+
+#cursor::before {
+  content: ' ';
+}
+
+#cursor {
+  position: fixed;
+  /* background-color: rgba(255, 0, 0, .25); */
+  border-left: 2px solid black;
+
+  pointer-events: none;
+}
+
+.hidden {
+  height: 0;
+  overflow: hidden;
+  outline: none;
 }
