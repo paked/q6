@@ -39,7 +39,7 @@ span.pill {
 
 #display div::before {
   color: #666;
-	content: counter(line) '  ';
+	content: counter(line) ' ';
   pointer-events: none;
 }
 
@@ -63,4 +63,8 @@ span .empty::before {
   height: 0;
   overflow: hidden;
   outline: none;
+}
+
+.highlighted {
+  background-color: lightblue;
 }
