@@ -100,6 +100,17 @@ let ourSelection: Selection = {
     }
 };
 
+function handleSelectionChanged() {
+    const lines = editor.value.split('\n');
+
+    ourSelection.start = indexToPoint(lines, editor.selectionStart);
+    ourSelection.end = indexToPoint(lines, editor.selectionEnd);
+
+    ourSelection = selectionNormalize(ourSelection);
+
+    window.redrawTextArea()
+}
+
 display.addEventListener('click', () => {
     editor.focus();
 })
@@ -166,15 +177,22 @@ window.redrawTextArea = function() {
     cursor.style.transform = `translateX(${xoffset}px)`;
 }
 
-editor.addEventListener('selectionchange', () => {
-    const lines = editor.value.split('\n');
+editor.addEventListener('selectionchange', handleSelectionChanged);
 
-    ourSelection.start = indexToPoint(lines, editor.selectionStart);
-    ourSelection.end = indexToPoint(lines, editor.selectionEnd);
+editor.addEventListener('input', (e: Event) => {
+    let ev = e as InputEvent;
 
-    ourSelection = selectionNormalize(ourSelection);
+    console.log(ev);
+    if (ev.inputType === 'deleteContentBackward') {
+        console.log('insert');
 
-    window.redrawTextArea()
-});
+        ev.preventDefault();
+
+
+        editor.value += ev.data;
+    }
+
+    window.redrawTextArea();
+})
 
 window.redrawTextArea();

@@ -13,7 +13,7 @@ span.pill {
 }
 
 #display {
-  background-color: #efefef;
+  background-color: #fbfbfb;
   width: 50%;
   min-height: 50px;
 }
@@ -41,6 +41,14 @@ span.pill {
   color: #666;
 	content: counter(line) ' ';
   pointer-events: none;
+}
+
+#display ::selection {
+  background: transparent;
+}
+
+#display ::-moz-selection {
+  background: rgba(255, 0, 0, 1);
 }
 
 span .empty::before {
