@@ -179,20 +179,4 @@ window.redrawTextArea = function() {
 
 editor.addEventListener('selectionchange', handleSelectionChanged);
 
-editor.addEventListener('input', (e: Event) => {
-    let ev = e as InputEvent;
-
-    console.log(ev);
-    if (ev.inputType === 'deleteContentBackward') {
-        console.log('insert');
-
-        ev.preventDefault();
-
-
-        editor.value += ev.data;
-    }
-
-    window.redrawTextArea();
-})
-
 window.redrawTextArea();
